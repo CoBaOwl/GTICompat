@@ -1,0 +1,3 @@
+gticompat.machine.wind_generator.lv.name=LV Wind Turbine
+gticompat.machine.wind_generator.mv.name=MV Wind Turbine
+gticompat.machine.wind_generator.hv.name=HV Wind Turbine
