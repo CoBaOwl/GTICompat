@@ -15,7 +15,6 @@ import com.coba.gticompat.common.metatileentity.GTIMetatileEntity;
 @Mod.EventBusSubscriber(modid = Tags.MODID)
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-//        GTIMetatileEntity.init(event);
     }
     @SubscribeEvent
     public void init(FMLInitializationEvent event) {
@@ -25,15 +24,12 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-//        event.getRegistry().registerAll(Registry.ITEMS.toArray(new Item[0]));
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-//        event.getRegistry().registerAll(Registry.BLOCKS.toArray(new Block[0]));
     }
     public void postInit() {
-//        Registry.recipes();
     }
 
     public void registerItemRender(Item item, int meta, String id){}
