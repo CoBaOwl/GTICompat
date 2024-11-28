@@ -1,12 +1,12 @@
 [{
     "modid": "${modid}",
     "name": "${modname}",
-    "description": "An example mod for Minecraft 1.12.2 with Forge",
+    "description": "GregTech Industrial Craft energy capability mod",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "logoFile": "",
     "url": "",
-    "authorList": [],
+    "authorList": ["CoBa31Rus"],
     "credits": "",
     "dependencies": []
 }]
