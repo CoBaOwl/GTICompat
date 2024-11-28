@@ -2,6 +2,7 @@ package com.coba.gticompat.common;
 
 import com.coba.gticompat.Tags;
 import com.coba.gticompat.energycapab.EnergyCapEventListener;
+import com.coba.gticompat.energycapab.IC2EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -14,11 +15,12 @@ import com.coba.gticompat.common.metatileentity.GTIMetatileEntity;
 @Mod.EventBusSubscriber(modid = Tags.MODID)
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-        GTIMetatileEntity.init(event);
+//        GTIMetatileEntity.init(event);
     }
     @SubscribeEvent
     public void init(FMLInitializationEvent event) {
         new EnergyCapEventListener();
+        new IC2EventListener();
     }
 
     @SubscribeEvent
