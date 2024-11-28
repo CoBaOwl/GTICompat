@@ -10,6 +10,8 @@ import ic2.api.energy.tile.IEnergyTile;
 import ic2.core.block.machine.tileentity.TileEntityCropHarvester;
 import ic2.core.block.machine.tileentity.TileEntityCropmatron;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;
+import ic2.core.block.reactor.tileentity.TileEntityNuclearReactorElectric;
+import ic2.core.block.wiring.TileEntityTransformer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -44,21 +46,60 @@ public class IC2EventListener {
         if (event.phase == TickEvent.Phase.END) return;
         for(IEnergySource t: this.tiles) {
             TileEntity te = (TileEntity)t;
-            IEnergySource tesource = (IEnergySource)te;
-            if(((IEnergySource)te).getOfferedEnergy() <= 0) continue;
+
             if(te.getWorld().isRemote) continue;
-            for(EnumFacing facing : EnumFacing.VALUES) {
-                TileEntity reciever = te.getWorld().getTileEntity(te.getPos().offset(facing));
-                if(reciever==null) continue;
-                IEnergyContainer s = reciever.getCapability(GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER, facing.getOpposite());
-                if(s==null) continue;
-                if(!s.inputsEnergy(facing.getOpposite()) || s.getEnergyCanBeInserted() == 0) continue;
-                long transfer = Math.min(GTValues.V[tesource.getSourceTier()], (long)tesource.getOfferedEnergy());
-                long accepted = s.acceptEnergyFromNetwork(facing.getOpposite(), transfer, 1);
-                long transferResult = transfer * accepted;
-                tesource.drawEnergy((double) transferResult);
+            List<IEnergyTile> subTiles;
+            if(te instanceof TileEntityNuclearReactorElectric)
+                subTiles = new ArrayList<>(((TileEntityNuclearReactorElectric)te).getSubTiles());
+            else {
+                subTiles = new ArrayList<>();
+                subTiles.add((IEnergyTile) te);
             }
+            long capacity = (long)((IEnergySource)te).getOfferedEnergy();
+            for(IEnergyTile source : subTiles) {
+                for(EnumFacing facing : EnumFacing.VALUES) {
+                    if(capacity <= 0) continue;
+                    TileEntity reciever = ((TileEntity)source).getWorld().getTileEntity(((TileEntity)source).getPos().offset(facing));
+                    if(reciever==null) continue;
+                    IEnergyContainer s = reciever.getCapability(GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER, facing.getOpposite());
+                    if(s==null) continue;
+                    if(!s.inputsEnergy(facing.getOpposite()) || s.getEnergyCanBeInserted() == 0) continue;
+                    capacity -= convertEnergy(s, facing, te);
+                }
+            }
+//            for(EnumFacing facing : EnumFacing.VALUES) {
+//                TileEntity reciever = te.getWorld().getTileEntity(te.getPos().offset(facing));
+//                if(reciever==null) continue;
+//                IEnergyContainer s = reciever.getCapability(GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER, facing.getOpposite());
+//                if(s==null) continue;
+//                if(!s.inputsEnergy(facing.getOpposite()) || s.getEnergyCanBeInserted() == 0) continue;
+//                convertEnergy(s, facing.getOpposite(), te);
+//            }
         }
+    }
+
+    private long convertEnergy(IEnergyContainer reciever, EnumFacing side, TileEntity source) {
+        IEnergySource tesource = (IEnergySource)source;
+        long transfer = 0;
+        long amps = 1;
+        if(GTValues.V[tesource.getSourceTier()] > (long)tesource.getOfferedEnergy()) {
+            transfer = (long)tesource.getOfferedEnergy();
+        } else {
+            amps = Math.min(getMaxAmps(source), (long)tesource.getOfferedEnergy() / GTValues.V[tesource.getSourceTier()]);
+            transfer = GTValues.V[tesource.getSourceTier()];
+        }
+        long accepted = reciever.acceptEnergyFromNetwork(side.getOpposite(), transfer, amps);
+        long transferResult = transfer * accepted;
+        tesource.drawEnergy((double) transferResult);
+        return transferResult;
+    }
+
+    private long getMaxAmps(TileEntity subTile) {
+        TileEntity t = subTile.getWorld().getTileEntity(subTile.getPos());
+        long amps = 1;
+        if ((t instanceof TileEntityTransformer) && (((TileEntityTransformer)t).getMode() == TileEntityTransformer.Mode.stepdown))
+            amps = 4;
+        return amps;
     }
 
 //    @SubscribeEvent
