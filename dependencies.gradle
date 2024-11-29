@@ -41,7 +41,7 @@ dependencies {
     api("gregtech:gregtech:2.8.7-beta")
     implementation "curse.maven:mixin-booter-419286:4828995"
     implementation "curse.maven:industrial-craft-242638:3838713"
-
+    implementation "curse.maven:railcraft-51195:3853491"
 //    implementation "curse.maven:tatw-263980:2585617"
 //    implementation "curse.maven:aroma1997core-223735:2914062"
 }

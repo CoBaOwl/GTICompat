@@ -10,7 +10,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import gregtech.api.capability.GregtechCapabilities;
 
-@Mod(modid = Tags.MODID, version = Tags.VERSION, name = Tags.MODNAME, acceptedMinecraftVersions = "[1.12.2]")
+@Mod(
+        modid = Tags.MODID,
+        version = Tags.VERSION,
+        name = Tags.MODNAME,
+        acceptedMinecraftVersions = "[1.12.2]",
+        dependencies = "required:forge@[14.23.5.2847,);" + "required-after:gregtech@[2.8.7-beta,);" +
+                "required-after:ic2@[2.8.67-ex112,);" + "after:railcraft"
+)
 public class GTIcompat {
     public static final Logger LOGGER = LogManager.getLogger(Tags.MODID);
     @SidedProxy(modId = Tags.MODID, clientSide = "com.coba.gticompat.client.ClientProxy", serverSide = "com.coba.gticompat.common.CommonProxy")
