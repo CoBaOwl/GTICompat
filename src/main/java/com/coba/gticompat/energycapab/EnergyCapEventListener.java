@@ -1,7 +1,5 @@
 package com.coba.gticompat.energycapab;
 
-
-import ic2.core.block.generator.tileentity.TileEntityGenerator;
 import ic2.core.block.machine.tileentity.*;
 import mods.railcraft.common.blocks.machine.manipulator.TileIC2Loader;
 import net.minecraft.tileentity.TileEntity;

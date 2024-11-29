@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import com.coba.gticompat.common.metatileentity.GTIMetatileEntity;
 
 @Mod.EventBusSubscriber(modid = Tags.MODID)
 public class CommonProxy {
@@ -32,5 +31,6 @@ public class CommonProxy {
     public void postInit() {
     }
 
-    public void registerItemRender(Item item, int meta, String id){}
+    public void registerItemRender(Item item, int meta, String id) {
+    }
 }
