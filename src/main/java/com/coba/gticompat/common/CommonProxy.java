@@ -2,6 +2,7 @@ package com.coba.gticompat.common;
 
 import com.coba.gticompat.Tags;
 import com.coba.gticompat.energycapab.EnergyCapEventListener;
+import com.coba.gticompat.energycapab.EnergyItemCapabilityListener;
 import com.coba.gticompat.energycapab.IC2EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -19,6 +20,7 @@ public class CommonProxy {
     public void init(FMLInitializationEvent event) {
         new EnergyCapEventListener();
         new IC2EventListener();
+        new EnergyItemCapabilityListener();
     }
 
     @SubscribeEvent

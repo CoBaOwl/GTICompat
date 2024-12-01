@@ -35,7 +35,7 @@ public class EnergyCapEventListener {
                 }
 
                 public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-                    return capability == GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER ? (T)this.getCap(facing) : null;
+                    return capability == GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER ? GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER.cast(this.getCap(facing)) : null;
                 }
 
                 private EnergyCapImpl getCap(EnumFacing side) {
