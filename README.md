@@ -13,10 +13,11 @@ A minecraft 1.12.2 mod provide capability IC2 GTCEu energy
     -cropharvester
     -cropmatron
     -RailCraft energy loader
+# IC2 items works:
+    -IC2 item charge
 # Energy:
     -when energy recieve from ic2 amps and voltage WORKS, be careful energy source tier is work!
 # Not work:
     -when energy recieve from GTCEu voltage not works (no explosion).
     -some mechanism from IC2 not recieve GTCEu energy
     -kinetic generator directly (only with IC2 transformers)
-    -IC2 item charge
