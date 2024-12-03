@@ -3,6 +3,7 @@
   "package": "com.coba.gticompat.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinCropStickreed",
     "MixinTileEntityCropHarvester",
     "MixinTileEntityCropmatron"
   ],
