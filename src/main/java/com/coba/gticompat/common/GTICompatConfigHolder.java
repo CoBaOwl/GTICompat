@@ -12,10 +12,12 @@ public class GTICompatConfigHolder {
 
     public static class IC2MachinesConfig {
         @Config.Comment({"IC2 Cropharvester and cropmatron radius" })
+        @Config.RequiresMcRestart
         @Config.RangeInt(min = 4, max = 7)
         public int cropRadius = 5;
 
         @Config.Comment({"IC2 Cropharvester and cropmatron ticks between scan" })
+        @Config.RequiresMcRestart
         @Config.RangeInt(min = 4, max = 10)
         public int cropTick = 7;
     }
