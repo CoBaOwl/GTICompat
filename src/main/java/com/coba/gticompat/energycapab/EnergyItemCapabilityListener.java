@@ -1,6 +1,6 @@
 package com.coba.gticompat.energycapab;
 
-import ic2.core.item.tool.ItemElectricTool;
+import ic2.api.item.IElectricItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -18,7 +18,7 @@ public class EnergyItemCapabilityListener {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void initCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
         Item item = event.getObject().getItem();
-        if (item instanceof ItemElectricTool)
+        if (item instanceof IElectricItem)
             event.addCapability(rl, new ItemCapImpl(event.getObject()));
     }
 }
