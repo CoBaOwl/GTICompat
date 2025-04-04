@@ -38,10 +38,9 @@
  * For more details, see https://docs.gradle.org/8.4/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
-    api("gregtech:gregtech:2.8.7-beta")
+    api("gregtech:gregtech:2.8.10-beta")
     implementation "curse.maven:mixin-booter-419286:4828995"
     implementation "curse.maven:industrial-craft-242638:3838713"
     implementation "curse.maven:railcraft-51195:3853491"
-//    implementation "curse.maven:tatw-263980:2585617"
-//    implementation "curse.maven:aroma1997core-223735:2914062"
+    implementation "curse.maven:baubles-227083:2518667"
 }

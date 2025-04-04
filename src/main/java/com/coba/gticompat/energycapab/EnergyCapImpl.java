@@ -21,8 +21,6 @@ public class EnergyCapImpl implements IEnergyContainer {
     private final long maxOutputAmperage = 0;
     protected long energyInputPerSec = 0;
     protected long energyOutputPerSec = 0;
-
-    protected long amps = 0;
     private TileEntity te;
     private EnumFacing from;
     public EnergyCapImpl(TileEntity te, EnumFacing side) {
@@ -37,7 +35,7 @@ public class EnergyCapImpl implements IEnergyContainer {
             return 0;
         } else {
             IEnergyAcceptor acceptor = sink;
-            if (!acceptor.acceptsEnergyFrom((IEnergyEmitter)null, this.from)) {
+            if (!acceptor.acceptsEnergyFrom(null, this.from)) {
                 return 0;
             } else {
                 if ((int)(sink.getDemandedEnergy()) > voltage) {
@@ -121,14 +119,6 @@ public class EnergyCapImpl implements IEnergyContainer {
             return null;
         } else {
             IEnergyTile tile = EnergyNet.instance.getTile(this.te.getWorld(), this.te.getPos());
-            return tile;
-        }
-    }
-    private IEnergyTile getSubTile() {
-        if (this.te.getWorld().isRemote) {
-            return null;
-        } else {
-            IEnergyTile tile = EnergyNet.instance.getSubTile(this.te.getWorld(), this.te.getPos());
             return tile;
         }
     }
