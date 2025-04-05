@@ -1,6 +1,8 @@
 package com.coba.gticompat.energycapab;
 
 import ic2.core.block.machine.tileentity.*;
+import ic2.core.block.wiring.TileEntityElectricBlock;
+import ic2.core.block.wiring.TileEntityTransformer;
 import mods.railcraft.common.blocks.machine.manipulator.TileIC2Loader;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -25,8 +27,8 @@ public class EnergyCapEventListener {
 
     @SubscribeEvent
     public void capabilityInit(AttachCapabilitiesEvent<TileEntity> event) {
-        final TileEntity te = (TileEntity)event.getObject();
-        if((te instanceof TileEntityStandardMachine) || (te instanceof TileEntityCropHarvester) || (te instanceof TileEntityCropmatron) || ((Loader.isModLoaded("railcraft")) && (te instanceof TileIC2Loader))) {
+        final TileEntity te = event.getObject();
+        if((te instanceof TileEntityStandardMachine) || (te instanceof TileEntityElectricBlock) || (te instanceof TileEntityTransformer) || (te instanceof TileEntityCropHarvester) || (te instanceof TileEntityCropmatron) || ((Loader.isModLoaded("railcraft")) && (te instanceof TileIC2Loader))) {
             event.addCapability(rl, new ICapabilityProvider() {
 
                 private Map<EnumFacing, EnergyCapImpl> map = new HashMap();
@@ -39,7 +41,7 @@ public class EnergyCapEventListener {
                 }
 
                 private EnergyCapImpl getCap(EnumFacing side) {
-                    EnergyCapImpl cap = (EnergyCapImpl)this.map.get(side);
+                    EnergyCapImpl cap = this.map.get(side);
                     if (cap == null) {
                         cap = new EnergyCapImpl(te, side);
                         this.map.put(side, cap);
