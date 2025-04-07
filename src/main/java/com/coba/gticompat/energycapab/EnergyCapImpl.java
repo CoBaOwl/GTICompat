@@ -9,6 +9,8 @@ import ic2.api.energy.tile.IEnergyTile;
 import ic2.core.block.machine.tileentity.TileEntityCropHarvester;
 import ic2.core.block.machine.tileentity.TileEntityCropmatron;
 import ic2.core.block.machine.tileentity.TileEntityStandardMachine;
+import ic2.core.block.wiring.TileEntityElectricBlock;
+import ic2.core.block.wiring.TileEntityTransformer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 
@@ -79,11 +81,14 @@ public class EnergyCapImpl implements IEnergyContainer {
             res = (long)((TileEntityCropmatron)this.te).getEnergy();
         else if (this.te instanceof TileEntityCropHarvester)
             res = (long)((TileEntityCropHarvester)this.te).getEnergy();
+        else if (this.te instanceof TileEntityElectricBlock)
+            res = ((TileEntityElectricBlock)this.te).getStored();
         return res;
     }
     @Override
     public long getEnergyCapacity() {
-        long res = this.getEnergyStored() + (long) this.getSink().getDemandedEnergy();
+        long res;
+        res = this.getEnergyStored() + (long) this.getSink().getDemandedEnergy();
         return res;
     }
     @Override
@@ -112,15 +117,14 @@ public class EnergyCapImpl implements IEnergyContainer {
     }
     @Override
     public boolean isOneProbeHidden() {
+        if (this.te instanceof TileEntityTransformer) return true;
         return IEnergyContainer.super.isOneProbeHidden();
     }
     private IEnergyTile getTile() {
-        if (this.te.getWorld().isRemote) {
+        if (this.te.getWorld().isRemote)
             return null;
-        } else {
-            IEnergyTile tile = EnergyNet.instance.getTile(this.te.getWorld(), this.te.getPos());
-            return tile;
-        }
+        else
+            return EnergyNet.instance.getTile(this.te.getWorld(), this.te.getPos());
     }
     private IEnergySink getSink() {
         IEnergyTile tile = this.getTile();

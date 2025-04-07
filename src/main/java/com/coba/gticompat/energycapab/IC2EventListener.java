@@ -7,6 +7,7 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.energy.tile.IEnergyTile;
+import ic2.core.block.generator.tileentity.TileEntityKineticGenerator;
 import ic2.core.block.reactor.tileentity.TileEntityNuclearReactorElectric;
 import ic2.core.block.wiring.TileEntityTransformer;
 import mods.railcraft.common.blocks.logic.IC2EmitterLogic;
@@ -20,8 +21,8 @@ import java.util.*;
 
 public class IC2EventListener {
 
-    private Set<IEnergySource> tiles = Collections.newSetFromMap(new IdentityHashMap());
-    private Set<IEnergySource> railtiles = Collections.newSetFromMap(new IdentityHashMap());
+    private final Set<IEnergySource> tiles = Collections.newSetFromMap(new IdentityHashMap<>());
+    private final Set<IEnergySource> railtiles = Collections.newSetFromMap(new IdentityHashMap<>());
     public IC2EventListener() {
         MinecraftForge.EVENT_BUS.register(this);
     }
