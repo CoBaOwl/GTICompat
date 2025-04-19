@@ -1,9 +1,6 @@
 package com.coba.gticompat.energycapab;
 
-import ic2.core.block.machine.tileentity.*;
-import ic2.core.block.wiring.TileEntityElectricBlock;
-import ic2.core.block.wiring.TileEntityTransformer;
-import mods.railcraft.common.blocks.machine.manipulator.TileIC2Loader;
+import com.coba.gticompat.api.utils.GTIUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +8,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import gregtech.api.capability.GregtechCapabilities;
 
@@ -28,7 +24,7 @@ public class EnergyCapEventListener {
     @SubscribeEvent
     public void capabilityInit(AttachCapabilitiesEvent<TileEntity> event) {
         final TileEntity te = event.getObject();
-        if((te instanceof TileEntityStandardMachine) || (te instanceof TileEntityElectricBlock) || (te instanceof TileEntityTransformer) || (te instanceof TileEntityCropHarvester) || (te instanceof TileEntityCropmatron) || ((Loader.isModLoaded("railcraft")) && (te instanceof TileIC2Loader))) {
+        if(GTIUtil.checkEntity(te)) {
             event.addCapability(rl, new ICapabilityProvider() {
 
                 private Map<EnumFacing, EnergyCapImpl> map = new HashMap();

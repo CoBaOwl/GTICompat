@@ -1,9 +1,11 @@
 package com.coba.gticompat.mixins;
 
+import com.coba.gticompat.api.utils.GTIUtil;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IEnergyContainer;
 import ic2.core.block.generator.tileentity.TileEntityConversionGenerator;
 import ic2.core.block.generator.tileentity.TileEntityKineticGenerator;
+import ic2.core.block.wiring.TileEntityTransformer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,7 +21,7 @@ public abstract class MixinTileEntityKineticGenerator  extends TileEntityConvers
         if(eu == 0) return;
         EnumFacing energyFace = getFacing().getOpposite();
         TileEntity reciever = this.getWorld().getTileEntity((this).getPos().offset(energyFace));
-        if (reciever == null) return;
+        if ((reciever == null) || (GTIUtil.checkEntity(reciever))) return;
         IEnergyContainer s = reciever.getCapability(GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER, energyFace.getOpposite());
         if (s == null || !s.inputsEnergy(energyFace.getOpposite()) || s.getEnergyCanBeInserted() == 0) return;
         long accepted = s.acceptEnergyFromNetwork(energyFace.getOpposite(), eu, 1);
