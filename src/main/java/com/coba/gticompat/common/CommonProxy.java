@@ -1,30 +1,38 @@
 package com.coba.gticompat.common;
 
 import com.coba.gticompat.Tags;
+import com.coba.gticompat.api.utils.GTIUtil;
 import com.coba.gticompat.energycapab.EnergyCapEventListener;
 import com.coba.gticompat.energycapab.EnergyItemCapabilityListener;
 import com.coba.gticompat.energycapab.IC2EventListener;
-import ic2.core.item.type.DustResourceType;
-import ic2.core.item.type.IngotResourceType;
-import ic2.core.item.type.OreResourceType;
-import ic2.core.item.type.PlateResourceType;
+import com.coba.gticompat.items.Items;
+import com.coba.gticompat.items.Materials;
+import com.coba.gticompat.items.RecepiesHandler;
+import gregtech.api.unification.material.Material;
+import gregtech.api.unification.material.event.MaterialEvent;
+import ic2.core.item.type.*;
 import ic2.core.ref.ItemName;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraft.util.ResourceLocation;
+import static gregtech.api.unification.material.Materials.*;
 
 import java.util.List;
 
+import ic2.core.ref.TeBlock;
 @Mod.EventBusSubscriber(modid = Tags.MODID)
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
+        Items.initItems();
     }
     @SubscribeEvent
     public void init(FMLInitializationEvent event) {
@@ -86,24 +94,30 @@ public class CommonProxy {
         removeItemFromOreDict("crushedUranium", ItemName.crushed.getItemStack(OreResourceType.uranium));
     }
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-    }
-
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    }
-
-    public void registerItemRender(Item item, int meta, String id) {
-    }
-
-    @SubscribeEvent
-    public void postInit(FMLPostInitializationEvent event) {
-    }
-
     public static void removeItemFromOreDict(String oreName, ItemStack itemStack) {
         List<ItemStack> oreList = OreDictionary.getOres(oreName);
         oreList.removeIf(item -> ItemStack.areItemsEqual(item, itemStack));
     }
+    public void registerItemRender(Item item, int meta, String id){}
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+        Item[] items = Items.ITEMS.toArray(new Item[0]);
+        event.getRegistry().registerAll(items);
+    }
 
+    public void postInit(FMLPostInitializationEvent event) {
+        GTIUtil.removeIC2MecRecepies();
+        GTIUtil.removeIC2Mec();
+        GTIUtil.removeIC2Items();
+        GTIUtil.removeIC2OreDict();
+        //Remove IC2 Nuclear Fuel recepies
+    }
+    @SubscribeEvent
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        RecepiesHandler.initRecipes();
+    }
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public static void registerMaterials(MaterialEvent event) {
+        Materials.registryMaterials();
+    }
 }

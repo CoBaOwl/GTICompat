@@ -5,6 +5,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +17,7 @@ import gregtech.api.capability.GregtechCapabilities;
         name = Tags.MODNAME,
         acceptedMinecraftVersions = "[1.12.2]",
         dependencies = "required:forge@[14.23.5.2847,);" + "required-after:gregtech@[2.8.7-beta,);" +
-                "required-after:ic2@[2.8.67-ex112,);" + "after:railcraft"
+                "required-after:ic2@[2.8.67-ex112,);" + "required-after:groovyscript@[1.1.1,);" + "after:railcraft"
 )
 public class GTIcompat {
     public static final Logger LOGGER = LogManager.getLogger(Tags.MODID);
@@ -31,5 +32,9 @@ public class GTIcompat {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+    }
+    @EventHandler
+    public void init(FMLPostInitializationEvent event) {
+        proxy.postInit(event);
     }
 }

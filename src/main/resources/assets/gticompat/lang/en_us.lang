@@ -1,0 +1,35 @@
+item.thorium_rod.name=Fuel Rod (Thorium)
+item.thorium_rod_dual.name=Dual Fuel Rod (Thorium)
+item.thorium_rod_quad.name=Quad Fuel Rod (Thorium)
+item.thorium_rod_dep.name=Fuel Rod (Depleted Thorium)
+item.thorium_rod_dual_dep.name=Dual Fuel Rod (Depleted Thorium)
+item.thorium_rod_quad_dep.name=Quad Fuel Rod (Depleted Thorium)
+
+item.uranium_rod.name=Fuel Rod (Uranium)
+item.uranium_rod_dual.name=Dual Fuel Rod (Uranium)
+item.uranium_rod_quad.name=Quad Fuel Rod (Uranium)
+item.uranium_rod_dep.name=Fuel Rod (Depleted Uranium)
+item.uranium_rod_dual_dep.name=Dual Fuel Rod (Depleted Uranium)
+item.uranium_rod_quad_dep.name=Quad Fuel Rod (Depleted Uranium)
+
+item.mox_rod.name=Fuel Rod (MOX)
+item.mox_rod_dual.name=Dual Fuel Rod (MOX)
+item.mox_rod_quad.name=Quad Fuel Rod (MOX)
+item.mox_rod_dep.name=Fuel Rod (Depleted MOX)
+item.mox_rod_dual_dep.name=Dual Fuel Rod (Depleted MOX)
+item.mox_rod_quad_dep.name=Quad Fuel Rod (Depleted MOX)
+
+item.naquadah_rod.name=Fuel Rod (Naquadah)
+item.naquadah_rod_dual.name=Dual Fuel Rod (Naquadah)
+item.naquadah_rod_quad.name=Quad Fuel Rod (Naquadah)
+item.naquadah_rod_dep.name=Fuel Rod (Depleted Naquadah)
+item.naquadah_rod_dual_dep.name=Dual Fuel Rod (Depleted Naquadah)
+item.naquadah_rod_quad_dep.name=Quad Fuel Rod (Depleted Naquadah)
+
+item.enriched_thorium_fuel.name=Enriched Thorium Fuel
+
+
+gticompat.material.uranium_fuel=Enriched Uranium Fuel
+gticompat.material.mox_fuel=Enriched MOX Fuel
+gticompat.material.thorium_fuel=Enriched Thorium Fuel
+gticompat.material.naquadah_fuel=Enriched Naquadah Fuel
