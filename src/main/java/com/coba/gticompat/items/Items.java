@@ -38,6 +38,7 @@ public class Items {
     public static final ItemReactorThorium NAQUADAH_ROD_DUAL = new ItemReactorThorium("naquadah_rod_dual", 2, 100000, 2F, 1, 1F, true, NAQUADAH_ROD_DUAL_DEP.getDefaultInstance());
     public static final ItemReactorThorium NAQUADAH_ROD_QUAD = new ItemReactorThorium("naquadah_rod_quad", 4, 100000, 2F, 1, 1F, true, NAQUADAH_ROD_QUAD_DEP.getDefaultInstance());
     public static final ItemRadioactive ENRICHED_THORIUM_FUEL = new ItemRadioactive("enriched_thorium_fuel", 1);
+    public static final ItemRadioactive NAQUADAH_FUEL = new ItemRadioactive("naquadah_fuel", 1);
 
     public static void initItems() {
 

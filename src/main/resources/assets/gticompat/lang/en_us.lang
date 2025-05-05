@@ -27,6 +27,7 @@ item.naquadah_rod_dual_dep.name=Dual Fuel Rod (Depleted Naquadah)
 item.naquadah_rod_quad_dep.name=Quad Fuel Rod (Depleted Naquadah)
 
 item.enriched_thorium_fuel.name=Enriched Thorium Fuel
+item.naquadah_fuel.name=Naquadah Fuel
 
 
 gticompat.material.uranium_fuel=Enriched Uranium Fuel

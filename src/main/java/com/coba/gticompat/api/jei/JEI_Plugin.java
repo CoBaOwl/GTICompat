@@ -116,9 +116,6 @@ public class JEI_Plugin implements IModPlugin {
         blacklist.addIngredientToBlacklist(GTIUtil.getIC2ItemStack(ItemName.ingot, IngotResourceType.silver, 9));
         blacklist.addIngredientToBlacklist(GTIUtil.getIC2ItemStack(ItemName.ingot, IngotResourceType.steel, 9));
         blacklist.addIngredientToBlacklist(GTIUtil.getIC2ItemStack(ItemName.ingot, IngotResourceType.tin, 9));
-
-
-
     }
 
     /**
