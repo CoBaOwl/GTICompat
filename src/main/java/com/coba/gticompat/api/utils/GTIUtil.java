@@ -99,12 +99,12 @@ public final class GTIUtil {
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.stirling_kinetic_generator));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.water_kinetic_generator));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.wind_kinetic_generator));
-        ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.nuclear_reactor));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.reactor_access_hatch));
-        ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.reactor_chamber));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.reactor_fluid_port));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.reactor_redstone_port));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.condenser));
+        ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.reactor_chamber));
+        ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.nuclear_reactor));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.fluid_bottler));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.fluid_distributor));
         ModHandler.removeRecipeByOutput(BlockName.te.getItemStack(TeBlock.fluid_regulator));
@@ -226,6 +226,8 @@ public final class GTIUtil {
         ModHandler.removeRecipeByOutput(getIC2ItemStack(ItemName.ingot, IngotResourceType.silver, 9));
         ModHandler.removeRecipeByOutput(getIC2ItemStack(ItemName.ingot, IngotResourceType.steel, 9));
         ModHandler.removeRecipeByOutput(getIC2ItemStack(ItemName.ingot, IngotResourceType.tin, 9));
+        ModHandler.removeRecipeByOutput(getIC2ItemStack(ItemName.heat_vent, 1));
+
 
 //        ModHandler.removeRecipeByOutput(getIC2Item(ItemName.ingot, IngotResourceType.refined_iron, 9));
 //        ModHandler.removeRecipeByOutput(getIC2Item(ItemName.ingot, IngotResourceType.uranium, 9));

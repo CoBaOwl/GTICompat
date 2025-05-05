@@ -106,14 +106,14 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        GTIUtil.removeIC2MecRecepies();
-        GTIUtil.removeIC2Mec();
-        GTIUtil.removeIC2Items();
-        GTIUtil.removeIC2OreDict();
         //Remove IC2 Nuclear Fuel recepies
     }
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        GTIUtil.removeIC2MecRecepies();
+        GTIUtil.removeIC2OreDict();
+        GTIUtil.removeIC2Items();
+        GTIUtil.removeIC2Mec();
         RecepiesHandler.initRecipes();
     }
     @SubscribeEvent(priority = EventPriority.NORMAL)
