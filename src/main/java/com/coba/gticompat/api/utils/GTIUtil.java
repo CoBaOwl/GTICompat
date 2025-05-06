@@ -3,7 +3,7 @@ package com.coba.gticompat.api.utils;
 import com.cleanroommc.groovyscript.compat.mods.appliedenergistics2.AppliedEnergistics2;
 import com.cleanroommc.groovyscript.compat.mods.ic2.IC2;
 import com.cleanroommc.groovyscript.compat.vanilla.VanillaModule;
-import com.coba.gticompat.Tags;
+
 import gregtech.api.recipes.ModHandler;
 import ic2.core.block.ITeBlock;
 import ic2.core.block.state.IIdProvider;
@@ -16,20 +16,11 @@ import ic2.core.ref.ItemName;
 import ic2.core.ref.TeBlock;
 import ic2.core.util.StackUtil;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.cleanroommc.groovyscript.compat.mods.ModSupport.APPLIED_ENERGISTICS_2;
 import static com.cleanroommc.groovyscript.compat.mods.ModSupport.INDUSTRIALCRAFT;
 
 public final class GTIUtil {
-    private static final Map<String, ItemStack> sIC2ItemMap = new HashMap<String, ItemStack>();
-    public static @NotNull ResourceLocation gtiId(@NotNull String path) {
-        return new ResourceLocation(Tags.MODID, path);
-    }
     public static <T extends Enum<T> & IIdProvider> ItemStack getIC2ItemStack(ItemName name, T variant, int count) {
         ItemStack ret = name.getItemStack(variant);
         ret.setCount(count);
@@ -193,7 +184,7 @@ public final class GTIUtil {
     public static void removeIC2Items() {
         //Jei show
         ModHandler.removeRecipeByOutput(ItemName.nuclear.getItemStack(NuclearResourceType.uranium));
-//        ModHandler.removeRecipeByOutput(ItemName.nuclear.getItemStack(NuclearResourceType.mox));
+        ModHandler.removeRecipeByOutput(ItemName.nuclear.getItemStack(NuclearResourceType.mox));
         //Jei hide
         ModHandler.removeRecipeByOutput(getIC2ItemStack(ItemName.barrel, 1));
         ModHandler.removeRecipeByOutput(getIC2ItemStack(ItemName.nuclear, NuclearResourceType.uranium_235, 1));

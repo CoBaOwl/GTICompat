@@ -3,12 +3,14 @@ package com.coba.gticompat.items;
 import com.coba.gticompat.api.utils.GTIUtil;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.metatileentities.MetaTileEntities;
 import ic2.core.item.type.CraftingItemType;
+import ic2.core.item.type.IngotResourceType;
 import ic2.core.item.type.NuclearResourceType;
 import ic2.core.ref.BlockName;
 import ic2.core.ref.ItemName;
@@ -66,14 +68,14 @@ public class RecepiesHandler {
                 .input(Items.URANIUM_ROD_DUAL_DEP.getDefaultInstance().getItem())
                 .outputs(OreDictUnifier.get(dust, Uranium238, 6))
                 .outputs(OreDictUnifier.get(dust, Plutonium239, 2))
-                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 2).getItem(), 1, 9)
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 2).getItem(), 2, 9)
                 .chancedOutput(OreDictUnifier.get(dust, Uranium235, 2), 2000, 0)
                 .buildAndRegister();
         CENTRIFUGE_RECIPES.recipeBuilder().duration(600).EUt(480)
                 .input(Items.URANIUM_ROD_QUAD_DEP.getDefaultInstance().getItem())
                 .outputs(OreDictUnifier.get(dust, Uranium238, 12))
                 .outputs(OreDictUnifier.get(dust, Plutonium239, 4))
-                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 4).getItem(), 1, 9)
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 4).getItem(), 4, 9)
                 .chancedOutput(OreDictUnifier.get(dust, Uranium235, 4), 2000, 0)
                 .buildAndRegister();
         //MOX process
@@ -112,14 +114,14 @@ public class RecepiesHandler {
                 .input(Items.MOX_ROD_DUAL_DEP.getDefaultInstance().getItem())
                 .outputs(OreDictUnifier.get(dust, Uranium238, 6))
                 .outputs(OreDictUnifier.get(dust, Uranium235, 2))
-                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 2).getItem(), 1, 9)
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 2).getItem(), 2, 9)
                 .chancedOutput(OreDictUnifier.get(dust, Plutonium239, 2), 2000, 0)
                 .buildAndRegister();
         CENTRIFUGE_RECIPES.recipeBuilder().duration(600).EUt(480)
                 .input(Items.MOX_ROD_QUAD_DEP.getDefaultInstance().getItem())
                 .outputs(OreDictUnifier.get(dust, Uranium238, 12))
                 .outputs(OreDictUnifier.get(dust, Uranium235, 4))
-                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 4).getItem(), 1, 9)
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 4).getItem(), 4, 9)
                 .chancedOutput(OreDictUnifier.get(dust, Plutonium239, 4), 2000, 0)
                 .buildAndRegister();
         //Thorium process
@@ -153,14 +155,14 @@ public class RecepiesHandler {
                 .input(Items.THORIUM_ROD_DUAL_DEP.getDefaultInstance().getItem())
                 .outputs(OreDictUnifier.get(dust, Thorium, 6))
                 .outputs(OreDictUnifier.get(dust, Uranium235, 2))
-                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 2).getItem(), 1, 9)
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 2).getItem(), 2, 9)
                 .chancedOutput(OreDictUnifier.get(dust, Uranium235, 2), 2000,2)
                 .buildAndRegister();
         CENTRIFUGE_RECIPES.recipeBuilder().duration(600).EUt(480)
                 .input(Items.THORIUM_ROD_QUAD_DEP.getDefaultInstance().getItem())
                 .outputs(OreDictUnifier.get(dust, Thorium, 12))
                 .outputs(OreDictUnifier.get(dust, Uranium235, 4))
-                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 4).getItem(), 1, 9)
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 4).getItem(), 4, 9)
                 .chancedOutput(OreDictUnifier.get(dust, Uranium235, 4), 2000,2)
                 .buildAndRegister();
         //Naquadah process
@@ -194,14 +196,14 @@ public class RecepiesHandler {
                 .input(Items.NAQUADAH_ROD_DUAL_DEP.getDefaultInstance().getItem())
                 .outputs(OreDictUnifier.get(dust, Naquadah, 6))
                 .outputs(OreDictUnifier.get(dust, Naquadria, 2))
-                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 2).getItem(), 1, 9)
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 2).getItem(), 2, 9)
                 .chancedOutput(OreDictUnifier.get(dust, Naquadria, 2), 2000,2)
                 .buildAndRegister();
         CENTRIFUGE_RECIPES.recipeBuilder().duration(600).EUt(480)
                 .input(Items.NAQUADAH_ROD_QUAD_DEP.getDefaultInstance().getItem())
                 .outputs(OreDictUnifier.get(dust, Naquadah, 12))
                 .outputs(OreDictUnifier.get(dust, Naquadria, 4))
-                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 4).getItem(), 1, 9)
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.fuel_rod, 4).getItem(), 4, 9)
                 .chancedOutput(OreDictUnifier.get(dust, Naquadria, 4), 2000,2)
                 .buildAndRegister();
         //Nuclear reactor
@@ -230,5 +232,11 @@ public class RecepiesHandler {
                 'E', GTIUtil.getIC2ItemStack(ItemName.advanced_heat_exchanger, 1),
                 'L', new UnificationEntry(plate, Lapis)
         );
+        BENDER_RECIPES.recipeBuilder().duration(80).EUt(120)
+                .input(GTIUtil.getIC2ItemStack(ItemName.ingot, IngotResourceType.alloy, 1).getItem(), 1,0)
+                .notConsumable(new IntCircuitIngredient(1))
+                .output(GTIUtil.getIC2ItemStack(ItemName.crafting, CraftingItemType.alloy, 1).getItem(), 1, 3)
+                .buildAndRegister();
+
     }
 }
