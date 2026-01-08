@@ -1,5 +1,6 @@
 package com.coba.gticompat.energycapab;
 
+import mods.railcraft.common.blocks.logic.RockCrusherLogic;
 import mods.railcraft.common.blocks.structures.TileRockCrusher;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -24,7 +25,7 @@ public class EnergyFECapEventListener {
     @SubscribeEvent
     public void capabilityInit(AttachCapabilitiesEvent<TileEntity> event) {
         final TileEntity te = event.getObject();
-        if((te instanceof IRockCrusherEnergy)) {
+        if((te instanceof TileRockCrusher)) {
             event.addCapability(rl, new ICapabilityProvider() {
 
                 private Map<EnumFacing, EnergyFECapImpl> mapFE = new HashMap();
