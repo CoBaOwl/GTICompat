@@ -11,9 +11,9 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 import java.util.function.BiConsumer;
 
-class ItemCapImpl implements IElectricItem, ICapabilityProvider {
+class EnergyItemCapImpl implements IElectricItem, ICapabilityProvider {
     private ItemStack item;
-    public ItemCapImpl(ItemStack i) {
+    public EnergyItemCapImpl(ItemStack i) {
         this.item = i;
     }
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {

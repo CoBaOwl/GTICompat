@@ -16,16 +16,12 @@ import net.minecraft.util.EnumFacing;
 
 
 import java.util.Objects;
-import java.util.function.Predicate;
 
-public class EnergyCapImpl implements IEnergyContainer {
-    private final long maxOutputVoltage = 0;
-    private final long maxOutputAmperage = 0;
-    protected long energyInputPerSec = 0;
-    protected long energyOutputPerSec = 0;
+public class EnergyIC2CapImpl implements IEnergyContainer {
     private TileEntity te;
     private EnumFacing from;
-    public EnergyCapImpl(TileEntity te, EnumFacing side) {
+    private long backup = 0;
+    public EnergyIC2CapImpl(TileEntity te, EnumFacing side) {
         this.te = te;
         this.from = side;
     }
@@ -33,28 +29,26 @@ public class EnergyCapImpl implements IEnergyContainer {
     @Override
     public long acceptEnergyFromNetwork(EnumFacing side, long voltage, long amperage) {
         IEnergySink sink = this.getSink();
-        if (sink == null) {
+        if (sink == null) return 0;
+
+        IEnergyAcceptor acceptor = sink;
+        if (!acceptor.acceptsEnergyFrom(null, this.from)) return 0;
+
+        if(((IBaseElectricCapability)te).getEnergy() != null && ((IBaseElectricCapability)te).getEnergy().getCapacity() <= ((IBaseElectricCapability)te).getEnergy().getEnergy())
             return 0;
-        } else {
-            IEnergyAcceptor acceptor = sink;
-            if (!acceptor.acceptsEnergyFrom(null, this.from)) {
-                return 0;
-            } else {
-                if ((int)(sink.getDemandedEnergy()) > voltage) {
-                    sink.injectEnergy(this.from, (double)voltage, 1.0);
-                    return 1;
-                }
-                return 0;
-            }
-        }
+        else if (((IBaseElectricCapability)te).getEnergy() == null && ((IBaseElectricCapability) te).getMaxEnergy() <= ((IBaseElectricCapability) te).getCurrEnergy())
+            return 0;
+
+        sink.injectEnergy(this.from, (double)voltage, (double)voltage);
+        return 1;
+//        if ((int)(sink.getDemandedEnergy()) < ((IBaseElectricCapability)te).getMaxEnergy()) {
+//            sink.injectEnergy(this.from, (double)voltage, 1.0);
+//            return 1;
+//        }
     }
     @Override
     public boolean inputsEnergy(EnumFacing side) {
         return this.getTile() instanceof IEnergyAcceptor;
-    }
-    @Override
-    public boolean outputsEnergy(EnumFacing side) {
-        return this.getTile() instanceof IEnergyEmitter;
     }
     @Override
     public long changeEnergy(long differenceAmount) {
@@ -70,34 +64,40 @@ public class EnergyCapImpl implements IEnergyContainer {
     }
     @Override
     public long getEnergyCanBeInserted() {
-         return (long) Objects.requireNonNull(this.getSink()).getDemandedEnergy();
+//         return (long) Objects.requireNonNull(this.getSink()).getDemandedEnergy();
+        if (((IBaseElectricCapability)te).getEnergy() != null)
+            return (long) (((IBaseElectricCapability)te).getEnergy().getCapacity() - ((IBaseElectricCapability)te).getEnergy().getEnergy());
+        return (long) (((IBaseElectricCapability)te).getMaxEnergy() - ((IBaseElectricCapability)te).getCurrEnergy());
+
     }
     @Override
     public long getEnergyStored() {
-        long res = 0;
-        if(this.te instanceof TileEntityStandardMachine)
-            res = (long)((TileEntityStandardMachine)this.te).getEnergy();
-        else if (this.te instanceof TileEntityCropmatron)
-            res = (long)((TileEntityCropmatron)this.te).getEnergy();
-        else if (this.te instanceof TileEntityCropHarvester)
-            res = (long)((TileEntityCropHarvester)this.te).getEnergy();
-        else if (this.te instanceof TileEntityElectricBlock)
-            res = ((TileEntityElectricBlock)this.te).getStored();
-        return res;
+//        long res = 0;
+//        if(this.te instanceof TileEntityStandardMachine)
+//            res = (long)((TileEntityStandardMachine)this.te).getEnergy();
+//        else if (this.te instanceof TileEntityCropmatron)
+//            res = (long)((TileEntityCropmatron)this.te).getEnergy();
+//        else if (this.te instanceof TileEntityCropHarvester)
+//            res = (long)((TileEntityCropHarvester)this.te).getEnergy();
+//        else if (this.te instanceof TileEntityElectricBlock)
+//            res = ((TileEntityElectricBlock)this.te).getStored();
+//        return res;
+        return (long)(((IBaseElectricCapability)te).getEnergy() != null ? ((IBaseElectricCapability)te).getEnergy().getEnergy() : ((IBaseElectricCapability)te).getCurrEnergy());
     }
     @Override
     public long getEnergyCapacity() {
-        long res;
-        res = this.getEnergyStored() + (long) this.getSink().getDemandedEnergy();
-        return res;
+//        long res;
+//        res = this.getEnergyStored() + (long) this.getSink().getDemandedEnergy();
+//        return res;
+        return (long)(((IBaseElectricCapability)te).getEnergy() != null ? ((IBaseElectricCapability)te).getEnergy().getCapacity() : ((IBaseElectricCapability)te).getMaxEnergy());
     }
     @Override
     public long getOutputAmperage() {
-        return this.maxOutputAmperage;
+        return 0;
     }
     @Override
     public long getOutputVoltage() {
-        return this.maxOutputVoltage;
+        return 0;
     }
     @Override
     public long getInputAmperage() {
@@ -109,11 +109,11 @@ public class EnergyCapImpl implements IEnergyContainer {
     }
     @Override
     public long getInputPerSec() {
-        return this.energyInputPerSec;
+        return 0;
     }
     @Override
     public long getOutputPerSec() {
-        return this.energyOutputPerSec;
+        return 0;
     }
     @Override
     public boolean isOneProbeHidden() {

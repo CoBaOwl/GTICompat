@@ -39,6 +39,7 @@
  */
 dependencies {
     api("gregtech:gregtech:2.8.10-beta")
+    api("com.cleanroommc:groovyscript:1.3.3") { transitive = false }
     implementation "curse.maven:mixin-booter-419286:4828995"
     implementation "curse.maven:industrial-craft-242638:3838713"
     implementation "curse.maven:railcraft-51195:3853491"

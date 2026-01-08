@@ -8,7 +8,12 @@
     "MixinTileEntityCrop",
     "MixinTileEntityCropHarvester",
     "MixinTileEntityCropmatron",
-    "MixinTileEntityKineticGenerator"
+    "MixinTileEntityKineticGenerator",
+    "MixinRockCrusherLogic",
+    "MixinTileEntityBaseGenerator",
+    "MixinTileEntityConversionGenerator",
+    "MixinTileEntityElectricMachine",
+    "MixinTileIC2Manipulator"
   ],
   "server": [
   ],

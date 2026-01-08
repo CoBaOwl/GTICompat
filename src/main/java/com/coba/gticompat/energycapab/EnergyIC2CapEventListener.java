@@ -1,5 +1,6 @@
 package com.coba.gticompat.energycapab;
 
+import ic2.core.block.generator.tileentity.TileEntityGenerator;
 import ic2.core.block.machine.tileentity.*;
 import ic2.core.block.wiring.TileEntityElectricBlock;
 import ic2.core.block.wiring.TileEntityTransformer;
@@ -18,20 +19,20 @@ import gregtech.api.capability.GregtechCapabilities;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EnergyCapEventListener {
+public class EnergyIC2CapEventListener {
     private static final ResourceLocation rl = new ResourceLocation("gticompat", "ic2capattach");
 
-    public EnergyCapEventListener() {
+    public EnergyIC2CapEventListener() {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
     public void capabilityInit(AttachCapabilitiesEvent<TileEntity> event) {
         final TileEntity te = event.getObject();
-        if((te instanceof TileEntityStandardMachine) || (te instanceof TileEntityElectricBlock) || (te instanceof TileEntityTransformer) || (te instanceof TileEntityCropHarvester) || (te instanceof TileEntityCropmatron) || ((Loader.isModLoaded("railcraft")) && (te instanceof TileIC2Loader))) {
+        if((te instanceof IBaseElectricCapability) ||  ((Loader.isModLoaded("railcraft")) && (te instanceof TileIC2Loader))) {
             event.addCapability(rl, new ICapabilityProvider() {
 
-                private Map<EnumFacing, EnergyCapImpl> map = new HashMap();
+                private Map<EnumFacing, EnergyIC2CapImpl> map = new HashMap();
                 public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
                     return capability == GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER;
                 }
@@ -40,10 +41,10 @@ public class EnergyCapEventListener {
                     return capability == GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER ? GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER.cast(this.getCap(facing)) : null;
                 }
 
-                private EnergyCapImpl getCap(EnumFacing side) {
-                    EnergyCapImpl cap = this.map.get(side);
+                private EnergyIC2CapImpl getCap(EnumFacing side) {
+                    EnergyIC2CapImpl cap = this.map.get(side);
                     if (cap == null) {
-                        cap = new EnergyCapImpl(te, side);
+                        cap = new EnergyIC2CapImpl(te, side);
                         this.map.put(side, cap);
                     }
 

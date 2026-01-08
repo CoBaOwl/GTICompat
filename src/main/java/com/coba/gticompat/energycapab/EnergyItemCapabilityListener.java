@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EnergyItemCapabilityListener {
-    private static final ResourceLocation rl = new ResourceLocation("gticompat", "ic2capattach");
+    private static final ResourceLocation rl = new ResourceLocation("gticompat", "ic2capitmattach");
     public EnergyItemCapabilityListener() {
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -19,6 +19,6 @@ public class EnergyItemCapabilityListener {
     public void initCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
         Item item = event.getObject().getItem();
         if (item instanceof IElectricItem)
-            event.addCapability(rl, new ItemCapImpl(event.getObject()));
+            event.addCapability(rl, new EnergyItemCapImpl(event.getObject()));
     }
 }
