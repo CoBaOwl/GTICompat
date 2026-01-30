@@ -17,7 +17,7 @@ import gregtech.api.capability.GregtechCapabilities;
         name = Tags.MODNAME,
         acceptedMinecraftVersions = "[1.12.2]",
         dependencies = "required:forge@[14.23.5.2847,);" + "required-after:gregtech@[2.8.7-beta,);" +
-                "required-after:ic2@[2.8.67-ex112,);" + "required-after:groovyscript@[1.1.1,);" + "after:railcraft"
+                "required-after:ic2@[2.8.67-ex112,);" + "after:groovyscript@[1.1.1,);" + "after:railcraft"
 )
 public class GTIcompat {
     public static final Logger LOGGER = LogManager.getLogger(Tags.MODID);

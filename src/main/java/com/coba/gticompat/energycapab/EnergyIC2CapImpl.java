@@ -41,10 +41,6 @@ public class EnergyIC2CapImpl implements IEnergyContainer {
 
         sink.injectEnergy(this.from, (double)voltage, (double)voltage);
         return 1;
-//        if ((int)(sink.getDemandedEnergy()) < ((IBaseElectricCapability)te).getMaxEnergy()) {
-//            sink.injectEnergy(this.from, (double)voltage, 1.0);
-//            return 1;
-//        }
     }
     @Override
     public boolean inputsEnergy(EnumFacing side) {
@@ -64,7 +60,6 @@ public class EnergyIC2CapImpl implements IEnergyContainer {
     }
     @Override
     public long getEnergyCanBeInserted() {
-//         return (long) Objects.requireNonNull(this.getSink()).getDemandedEnergy();
         if (((IBaseElectricCapability)te).getEnergy() != null)
             return (long) (((IBaseElectricCapability)te).getEnergy().getCapacity() - ((IBaseElectricCapability)te).getEnergy().getEnergy());
         return (long) (((IBaseElectricCapability)te).getMaxEnergy() - ((IBaseElectricCapability)te).getCurrEnergy());
@@ -72,23 +67,10 @@ public class EnergyIC2CapImpl implements IEnergyContainer {
     }
     @Override
     public long getEnergyStored() {
-//        long res = 0;
-//        if(this.te instanceof TileEntityStandardMachine)
-//            res = (long)((TileEntityStandardMachine)this.te).getEnergy();
-//        else if (this.te instanceof TileEntityCropmatron)
-//            res = (long)((TileEntityCropmatron)this.te).getEnergy();
-//        else if (this.te instanceof TileEntityCropHarvester)
-//            res = (long)((TileEntityCropHarvester)this.te).getEnergy();
-//        else if (this.te instanceof TileEntityElectricBlock)
-//            res = ((TileEntityElectricBlock)this.te).getStored();
-//        return res;
         return (long)(((IBaseElectricCapability)te).getEnergy() != null ? ((IBaseElectricCapability)te).getEnergy().getEnergy() : ((IBaseElectricCapability)te).getCurrEnergy());
     }
     @Override
     public long getEnergyCapacity() {
-//        long res;
-//        res = this.getEnergyStored() + (long) this.getSink().getDemandedEnergy();
-//        return res;
         return (long)(((IBaseElectricCapability)te).getEnergy() != null ? ((IBaseElectricCapability)te).getEnergy().getCapacity() : ((IBaseElectricCapability)te).getMaxEnergy());
     }
     @Override

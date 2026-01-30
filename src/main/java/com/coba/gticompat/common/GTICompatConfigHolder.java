@@ -10,6 +10,10 @@ public class GTICompatConfigHolder {
     @Config.Name("machinery")
     public static IC2MachinesConfig ic2MachinesConfig = new IC2MachinesConfig();
 
+    @Config.Comment("IC2 machinery configurations")
+    @Config.Name("machinery")
+    public static OreDictConfig oreDictConfig = new OreDictConfig();
+
     public static class IC2MachinesConfig {
         @Config.Comment({"IC2 Cropharvester and cropmatron radius" })
         @Config.RequiresMcRestart
@@ -20,5 +24,16 @@ public class GTICompatConfigHolder {
         @Config.RequiresMcRestart
         @Config.RangeInt(min = 4, max = 10)
         public int cropTick = 7;
+    }
+
+    public static class OreDictConfig {
+
+        @Config.Comment({"Delete IC2 Ore Dictionary" })
+        @Config.RequiresMcRestart
+        public boolean IC2OreDictDelete = true;
+
+        @Config.Comment({"Delete RailCraft Ore Dictionary" })
+        @Config.RequiresMcRestart
+        public boolean RCOreDictDelete = true;
     }
 }

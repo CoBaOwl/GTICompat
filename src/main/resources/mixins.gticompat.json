@@ -13,7 +13,8 @@
     "MixinTileEntityBaseGenerator",
     "MixinTileEntityConversionGenerator",
     "MixinTileEntityElectricMachine",
-    "MixinTileIC2Manipulator"
+    "MixinTileIC2Manipulator",
+    "MixinTileCharge"
   ],
   "server": [
   ],

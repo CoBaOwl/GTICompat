@@ -4,6 +4,8 @@ import ic2.core.block.generator.tileentity.TileEntityGenerator;
 import ic2.core.block.machine.tileentity.*;
 import ic2.core.block.wiring.TileEntityElectricBlock;
 import ic2.core.block.wiring.TileEntityTransformer;
+import mods.railcraft.common.blocks.machine.charge.TileCharge;
+import mods.railcraft.common.blocks.machine.charge.TileChargeFeederIC2;
 import mods.railcraft.common.blocks.machine.manipulator.TileIC2Loader;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -29,7 +31,7 @@ public class EnergyIC2CapEventListener {
     @SubscribeEvent
     public void capabilityInit(AttachCapabilitiesEvent<TileEntity> event) {
         final TileEntity te = event.getObject();
-        if((te instanceof IBaseElectricCapability) ||  ((Loader.isModLoaded("railcraft")) && (te instanceof TileIC2Loader))) {
+        if((te instanceof IBaseElectricCapability) ||  ((Loader.isModLoaded("railcraft")) && ((te instanceof TileIC2Loader) || (te instanceof TileCharge)))) {
             event.addCapability(rl, new ICapabilityProvider() {
 
                 private Map<EnumFacing, EnergyIC2CapImpl> map = new HashMap();

@@ -420,9 +420,7 @@ public final class GTIUtil {
         remove("gearInvar", RailcraftItems.GEAR.getStack(ItemGear.EnumGear.INVAR));
     }
 
-    public static void removeCrusherRecepies() {
-        removeRCRockCrusherRecipe( new ItemStack(Blocks.OBSIDIAN));
-        removeRCRockCrusherRecipe( new ItemStack(Blocks.COBBLESTONE));
+    public static void removeCrusherRecepies() {;
     }
 
     public static void addIC2OreDict() {
